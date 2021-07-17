@@ -8,7 +8,7 @@ export const WidgetBar: React.FC<WidgetBarProps> = ({
   setIsReset,
 }: WidgetBarProps) => {
   return (
-    <div className="bg-white cursor-pointer p-2 shadow-lg font-medium" onClick={() => setIsReset(true)}>
+    <div className="bg-white cursor-pointer p-2 shadow-lg font-medium rounded" onClick={() => setIsReset(true)}>
       RESET
     </div>
   );

@@ -21,6 +21,7 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
 
     useEffect(() => {
         setValues(Array(9).fill(0));
+        setIsGameComplete(false);
     }, [isReset]);
 
     const EmptyBox: React.FC = () => {

@@ -31,11 +31,11 @@ const Modal = forwardRef(
             "fixed flex items-center justify-around w-full h-full top-0 left-0 right-0 bottom-0 z-998 overflow-y-auto"
         );
         const backdropClasses = (
-            `modal-backdrop transition-opacity ${isVisible ? "opacity-1" : "opacity-0"} fixed inset-0 z-999 bg-gray-300 opacity-60 duration-300 transition-opacity backdrop-blur`
+            `modal-backdrop transition-opacity ${isVisible ? "opacity-1" : "opacity-0"} fixed inset-0 z-999 bg-black opacity-60 duration-300 transition-opacity backdrop-blur`
         );
         /* purgecss: bg-white  bg-dark-7 text-white text-dark-8*/
         const modalClasses = (`
-            min-w-full max-w-xs sm:min-w-480p absolute rounded z-1000 sm:my-90p duration-100 transition-all ${isVisible ? "opacity-1" : "opacity-0 transform-y-40p"} bg-white`);
+             absolute rounded-lg z-1000 sm:my-90p duration-100 transition-all ${isVisible ? "opacity-1" : "opacity-0 transform-y-40p"} bg-gray-200`);
 
 
         const closeModal = (): void => {
@@ -61,11 +61,11 @@ const Modal = forwardRef(
                     onTransitionEnd={handleTransitionEnd}
                     data-testid={testId}
                 >
-                    <div className="relative px-10 pt-5 pb-5">
+                    <div className="relative px-20 py-5 font-bold text-black">
                         {title && (
                             <h2
-                                data-testid={`${testId}-heading`}
-                                className={`text-22 sm:text-26 font-semibold tracking-3 pr-8 text-black`}
+                                data-testid={`modal-heading`}
+                                className={`text-22 sm:text-26 font-semibold tracking-3 text-black`}
                             >
                                 {title}
                             </h2>
