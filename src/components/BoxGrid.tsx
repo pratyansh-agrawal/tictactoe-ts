@@ -5,7 +5,7 @@ interface BoxGridProps {
     stepNumber: number;
     setStepNumber: (counter: number) => void;
     isReset: boolean;
-    setShouldShowWinnerModal: (flag: boolean) => void;
+    setShouldShowWinnerModal: (props: { state: boolean, winner: number | null }) => void;
 }
 
 interface BoxProps {
@@ -21,7 +21,7 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
 
     useEffect(() => {
         setValues(Array(9).fill(0));
-    },[isReset]);
+    }, [isReset]);
 
     const EmptyBox: React.FC = () => {
         return <div className="bg-gray-200"></div>;
@@ -29,28 +29,49 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
 
     const CrossIcon: React.FC = () => {
         return <div className="p-2 text-yellow-400">
-            <GiCrossMark className="h-full w-full"/>
+            <GiCrossMark className="h-full w-full" />
         </div>;
     }
 
     const CircleIcon: React.FC = () => {
         return <div className="p-2 h-full w-full text-yellow-400">
-            <GiCircleClaws className="h-full w-full"/>
+            <GiCircleClaws className="h-full w-full" />
         </div>;
     }
     const [showIcon, setShowIcon] = useState<boolean>(false);
     const [values, setValues] = useState<number[]>(Array(9).fill(0));
+    const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
 
 
-    const winCombonations = ["012","345","678","036","147","258","048","246"];
+    const winCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
     const checkForWinner = () => {
-        //check if value 1 or value 2 makes falls in the win combinations
-        console.log(winCombonations);
-        setShouldShowWinnerModal(true);
+        console.log(stepNumber,);
+        console.log("Values",values);
+        for (let i = 0; i < winCombinations.length; i++) {
+            let line = winCombinations[i];
+            const [indexA, indexB, indexC]: number[] = line;
+            const markValue = values[indexA];
+
+            if (markValue && markValue === values[indexB] && markValue === values[indexC]) {
+                //Winner Winner Chicken Dinner
+
+                setShouldShowWinnerModal({state: true, winner: markValue});
+                setIsGameComplete(true);
+            }
+        }
     };
 
     const getIcon = (index: number) => {
-        switch(index) {
+        switch (index) {
             case 0: return <EmptyBox />;
             case 1: return <CrossIcon />;
             case 2: return <CircleIcon />;
@@ -59,9 +80,9 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
 
 
     const setBoxValue = (index: number) => {
-        let tempArr = [...values];
-        tempArr[index] = stepNumber%2===0 ? 2 : 1;
-        setValues([...tempArr ]);
+        let tempArr = values;
+        tempArr[index] = stepNumber % 2 === 0 ? 2 : 1;
+        setValues(tempArr);
     };
 
     const Box: React.FC<BoxProps> = ({ index }: BoxProps) => {
@@ -69,19 +90,19 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
             <div
                 className="bg-white h-20 w-20 shadow-lg"
                 onClick={() => {
-                    console.log(values);
-                    if(values[index] === 0){
-                        console.log("clicked",stepNumber);
+                    if (values[index] === 0 && !isGameComplete) {
+                        console.log("clicked", stepNumber);
                         setBoxValue(index);
                         setShowIcon(true);
                         setStepNumber(stepNumber + 1);
                         checkForWinner();
                     }
-                    if(stepNumber >= 9) {
-
+                    if (stepNumber >= 9) {
+                        setShouldShowWinnerModal({state: true, winner: null});
+                        setIsGameComplete(true);
                     }
                 }}
-                
+
             >
                 {showIcon && getIcon(values[index])}
             </div>
@@ -90,7 +111,7 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
 
     return (
         <div className="grid grid-cols-3 grid-rows-3 gap-4">
-            {[...Array(9)].map((x,index) => (
+            {[...Array(9)].map((x, index) => (
                 <div key={`box-${index}`}>
                     <Box index={index} />
                 </div>

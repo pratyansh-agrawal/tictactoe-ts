@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { BoxGrid } from "./BoxGrid";
 import { WidgetBar } from "./WidgetBar";
+import Modal from "./Modal";
+export interface WinnerModalProps {
+    state: boolean;
+    winner: number | null;
+}
 
 export const BasePage = () => {
-    
+
 
     const [stepNumber, setStepNumber] = useState<number>(0);
     const [isReset, setIsReset] = useState<boolean>(false);
-    const [shouldShowWinnerModal, setShouldShowWinnerModal] = useState<boolean>(false);
+    const [shouldShowWinnerModal, setShouldShowWinnerModal] = useState<WinnerModalProps>({ state: false, winner: null });
 
     useEffect(() => {
         setStepNumber(1);
@@ -16,7 +21,7 @@ export const BasePage = () => {
 
     return (
         <div className="h-screen w-screen bg-yellow-400">
-            <div className="flex flex-col pt-20 center h-full w-full">
+            <div className="flex flex-col pt-20 h-full w-full">
                 <div className="text-white font-bold text-4xl text-center mb-12">
                     Tic-Tac-Toe
                 </div>
@@ -33,6 +38,16 @@ export const BasePage = () => {
                 <div className="self-center">
                     <WidgetBar setIsReset={setIsReset} />
                 </div>
+            </div>
+            <div className="center">
+                {shouldShowWinnerModal.state && <Modal
+                    title={shouldShowWinnerModal.winner ? "WINNERRR" : "MATCH TIED"}
+                    ref={undefined}
+                    onClose={() => setShouldShowWinnerModal({ state: false, winner: null })}
+                    isOpened={shouldShowWinnerModal.state}
+                >
+                    {"sample"}
+                </Modal>}
             </div>
         </div>
     );
