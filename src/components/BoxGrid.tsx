@@ -55,8 +55,6 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
         [2, 4, 6]
     ];
     const checkForWinner = () => {
-        console.log(stepNumber,);
-        console.log("Values",values);
         for (let i = 0; i < winCombinations.length; i++) {
             let line = winCombinations[i];
             const [indexA, indexB, indexC]: number[] = line;
@@ -89,10 +87,9 @@ export const BoxGrid: React.FC<BoxGridProps> = ({
     const Box: React.FC<BoxProps> = ({ index }: BoxProps) => {
         return (
             <div
-                className="bg-white h-20 w-20 shadow-lg"
+                className="bg-white h-20 w-20 shadow-lg cursor-pointer"
                 onClick={() => {
                     if (values[index] === 0 && !isGameComplete) {
-                        console.log("clicked", stepNumber);
                         setBoxValue(index);
                         setShowIcon(true);
                         setStepNumber(stepNumber + 1);

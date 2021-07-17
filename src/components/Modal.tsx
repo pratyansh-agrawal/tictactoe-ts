@@ -14,7 +14,6 @@ interface ModalProps {
 }
 const Modal = forwardRef(
     ({ title, onClose, testId, children, isOpened }: ModalProps, ref: any) => {
-        console.log("Hello Sire");
         const [isVisible, setVisible] = useState(false);
         useEffect(() => {
             if (isOpened) {
