@@ -23,8 +23,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ## Screenshots
-![alt text](https://github.com/pratyansh-agrawal/tictactoe-ts/blob/main/images/tictactoe1.png![tictactoe2](https://user-images.githubusercontent.com/17528057/126047600-2f2f0dc5-e77e-4dd1-9578-e54bf60ad009.png)
-?raw=true)
+![alt text](https://github.com/pratyansh-agrawal/tictactoe-ts/blob/main/images/tictactoe1.png?raw=true)
 
 
 ## Learn More
