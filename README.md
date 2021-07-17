@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-***Created By Pratyansh Agrawal
+### *Created By Pratyansh Agrawal*
 
 ### Tech Stack - Typescript / React / Tailwind
 
