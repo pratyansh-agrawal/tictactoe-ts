@@ -1,14 +1,16 @@
 # Tic Tac Toe
 
-Created By Pratyansh Agrawal
+***Created By Pratyansh Agrawal
 
-## Live Demo[https://pratyansh-agrawal.github.io/tictactoe-ts/]
+###Tech Stack - Typescript / React / Tailwind
+
+## [Live Demo](https://pratyansh-agrawal.github.io/tictactoe-ts/)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+#### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
