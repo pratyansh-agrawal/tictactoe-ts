@@ -2,7 +2,7 @@
 
 ***Created By Pratyansh Agrawal
 
-###Tech Stack - Typescript / React / Tailwind
+### Tech Stack - Typescript / React / Tailwind
 
 ## [Live Demo](https://pratyansh-agrawal.github.io/tictactoe-ts/)
 
